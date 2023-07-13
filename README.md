@@ -47,7 +47,7 @@ After narrowing the active hosts to 2 (which is correct since I have a Win 10 ma
 
 10. Try Again: So brute forcing failed the first time after running through each password in the file. The password I set was in the file but unfortunately, one capital letter made all the difference (I checked). Maybe I need more wordlists or maybe it was something else. I will figure that out later.
 
-11. I decided to create my own wordlist with the password I set to test the module regardless. I opened a new terminal window and navigates to the wordlists directory. Writing to file in this directory is not possible unless you have root permissions so I sudo'd into root and created the file `mousepad brutefile.txt`. I loaded up some generic passwords including the correct one and reset the pass_file option to `set PASS_FILE usr/share/wordlists/brutefile.txt`. SUCCESS!
+11. A little cheat: I decided to create my own wordlist with the password I set to test the module regardless. I opened a new terminal window and navigates to the wordlists directory. Writing to file in this directory is not possible unless you have root permissions so I sudo'd into root and created the file `mousepad brutefile.txt`. I loaded up some generic passwords including the correct one and reset the pass_file option to `set PASS_FILE usr/share/wordlists/brutefile.txt`. SUCCESS!
 ![Bruteforcecomplete!](https://github.com/chryber/Brute-Forcing-Active-Directory-with-Metasploit/assets/121698544/3511cb4e-7a39-40c6-8b6a-c26c2d4a3d6c)
 
 
