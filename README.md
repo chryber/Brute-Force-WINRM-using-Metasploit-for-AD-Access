@@ -50,5 +50,5 @@ After narrowing the active hosts to 2 (which is correct since I have a Win 10 ma
 11. A little cheat: I decided to create my own wordlist with the password I set to test the module regardless. I opened a new terminal window and navigates to the wordlists directory. Writing to file in this directory is not possible unless you have root permissions so I sudo'd into root and created the file `mousepad brutefile.txt`. I loaded up some generic passwords including the correct one and reset the pass_file option to `set PASS_FILE usr/share/wordlists/brutefile.txt`. SUCCESS!
 ![Bruteforcecomplete!](https://github.com/chryber/Brute-Forcing-Active-Directory-with-Metasploit/assets/121698544/3511cb4e-7a39-40c6-8b6a-c26c2d4a3d6c)
 
-<h2>What did I learn?</h2>
+<h2>💭What did I learn?</h2>
 The lab revealed how using easily guessed login credentials is a major security flaw. If I had the right wordlist and time, the password can easily be found by brute force tools. Implementing password policies such as password complexity and lockouts can prevent these attacks. In production environments, more stress is placed on good password hygene to prevent undesirables from gaining access to critical systems. I now remember my password to work on my other lab so that's a plus as well 😅.
