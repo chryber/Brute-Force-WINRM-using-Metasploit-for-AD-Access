@@ -1,7 +1,7 @@
-<h1>Brute Forcing Active Directory with WINRM Exploit in Metasploit</h1>
+<h1>Brute Forcing WINRM using Metasploit for Active Direcory Access</h1>
 
 <h2>Intro</h2>
-Funny story how this lab began. I was actually attempting to set up another lab with Active Directory but could not remember the admin login I created initially. I kept trying generic passwords and ones that I used in the past but none could log me in. Frustrated, I tried recovery mode to see if I can get to the command prompt but that required my admin login as well 🤦‍♂️. This situation got my wheels spinning. Can I crack my password? I began to look into this and finally got it with a little help which will be discussed later on. Follow along after setting up AD and Kali or just read through my process on how dangerous it is to use weak passwords. I detailed the process and tools that I used below. Check out my first AD project or Jason Makador's Youtube tutorial on how to create the homelab.
+Funny story how this lab began. I was actually attempting to set up another lab with Active Directory but could not login to Windows Server 2019 due to forgetting my admin password. I kept trying generic passwords that I figured that I would have used but none could log me in. Frustrated, I tried recovery mode to see if I can get to the command prompt but that required my admin login as well 🤦‍♂️. This situation got my wheels spinning. Can I crack my password? I began to look into this and finally got it with a little help which will be discussed later on. Follow along after setting up Windows Server 2019 and Kali or just read through my process on how dangerous it is to use weak passwords. I detailed the process and tools that I used below. Check out my first AD project or Jason Makador's Youtube tutorial on how to create the homelab.
 
 <h2>🔩 Utlities Used</h2>
 
