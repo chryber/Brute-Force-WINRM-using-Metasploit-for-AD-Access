@@ -1,13 +1,15 @@
 <h1>Brute Forcing WINRM using Metasploit for Active Direcory Access</h1>
 
 <h2>Intro</h2>
-Funny story how this lab began. I was actually attempting to set up another lab with Active Directory but could not login to Windows Server 2019 due to forgetting my admin password. I kept trying generic passwords that I figured that I would have used but none could log me in. Frustrated, I tried recovery mode to see if I can get to the command prompt but that required my admin login as well 🤦‍♂️. This situation got my wheels spinning. Can I crack my password? I began to look into this and finally got it with a little help which will be discussed later on. Follow along after setting up Windows Server 2019 and Kali or just read through my process on how dangerous it is to use weak passwords. I detailed the process and tools that I used below. Check out my first AD project or Jason Makador's Youtube tutorial on how to create the homelab.
+Funny story how this lab began. I was actually attempting to set up another lab with Active Directory but could not login to Windows Server 2019 due to forgetting my admin password. I kept trying generic passwords that I figured that I would have used but none could log me in. Frustrated, I tried recovery mode to see if I can get to the command prompt but that required my admin login as well 🤦‍♂️. This situation got my wheels spinning. Can I crack my password? I began to look into this and finally got it with a little help which will be discussed later on. Follow along after setting up Windows Server 2019 and Kali or just read through my process on how dangerous it is to use weak passwords. I detailed the process and tools that I used below. Check out my first Active Directory project or Jason Makador's Youtube tutorial on how to set up the homelab.
 
 <h2>🔩 Utlities Used</h2>
 
 - Windows Server 2019 💻 (target)
 - Virtual Box 🧰
 - Kali Purple 🐉 (attacker)
+
+<h2>Network Map</h2>
 
 <h2>♻️ The Process</h2>
 
@@ -18,7 +20,7 @@ Funny story how this lab began. I was actually attempting to set up another lab 
 3. Network: VirtualBox has a variety of options under the Network setting for each machine. Most if not all of my machines are set to NatNetwork which I created as a default. I also created a ChryberHomeLab Natnetwork recently as well. A NatNetwork is an internal network that accepts outbound connections. In VirtualBox, Click Tools < Network < NAT Networks < Create < Enter network name < Enter IPv4 address (mine is a /24 network to allow for 254 hosts) < Enable DHCP (unless you want to assign IP addresses to each machine yourself) < Apply. Note: This should not be the same IP address as your host machine. I recommend using 'ipconfig' on your host machine command line and confirm your ip address.
 ![Recording 2023-07-12 at 19 03 37](https://github.com/chryber/Brute-Forcing-Active-Directory-with-Metasploit/assets/121698544/4d721f81-3ecb-40ab-829e-e51567b27c16)
 
-4. Set up: Moving AD and Kali into the same subnet. Click machine < Settings < Network < Attached to: NAT Network < Name: ChryberHomeLab (in my case).
+4. Set up: Moving Server 2019 and Kali into the same subnet. Click machine < Settings < Network < Attached to: NAT Network < Name: ChryberHomeLab (in my case).
 ![Recording 2023-07-12 at 19 18 10](https://github.com/chryber/Brute-Forcing-Active-Directory-with-Metasploit/assets/121698544/2c60faa1-3403-491a-b02f-88a9bfcf892f)
 
 5. IP address locator: Now that the attack machine (Kali) and the target (Server 2019) are on on the same network, my next thought was how I can locate the IP address assigned to the server machine by DHCP. The first thing I did was confirm Kali's ip using `ifconfig` which was 192.168.3.5 I decided to use Nmap. In short, Nmap scans a specific ip or subnet for open ports, services and hosts. I used the help page to use the best flags for this. I chose `nmap -v -sn 192.168.3.0/24`. Why? -v for verbosity so I can see the addresses being scanned and -sn so ports are not scanned for each, all I need to know is what hosts are active on the network. 
@@ -50,4 +52,5 @@ After narrowing the active hosts to 2 (which is correct since I have a Win 10 ma
 11. A little cheat: I decided to create my own wordlist with the password I set to test the module regardless. I opened a new terminal window and navigates to the wordlists directory. Writing to file in this directory is not possible unless you have root permissions so I sudo'd into root and created the file `mousepad brutefile.txt`. I loaded up some generic passwords including the correct one and reset the pass_file option to `set PASS_FILE usr/share/wordlists/brutefile.txt`. SUCCESS!
 ![Bruteforcecomplete!](https://github.com/chryber/Brute-Forcing-Active-Directory-with-Metasploit/assets/121698544/3511cb4e-7a39-40c6-8b6a-c26c2d4a3d6c)
 
-
+<h2>What did I learn?</h2>
+The lab revealed how using easily guessed login credentials is a major security flaw. If I had the right wordlist and time, the password can easily be found by brute force tools. Implementing password policies such as password complexity and lockouts can prevent these attacks. In production environments, more stress is placed on good password hygene to prevent undesirables from gaining access to critical systems. I now remember my password to work on my other lab so that's a plus as well 😅.
