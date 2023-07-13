@@ -37,4 +37,17 @@ After narrowing the active hosts to 2 (which is correct since I have a Win 10 ma
 `run`
 ![msfconsole_winrm](https://github.com/chryber/Brute-Forcing-Active-Directory-with-Metasploit/assets/121698544/848eb407-1617-470a-b949-594f5ee9e767)
 
-9. Exploit: Next, it was time to find this password. I loaded up the the brute force scanner `auxiliary/scanner/winrm/winrm_login` via `use 3`. Again, I used `options` to see what was required and set already. For this step, I needed the domain, rhosts, password, pass_file and username (even though password, pass_file and username says 'no'). The exploit wouldn't run without all 5 because of the authentica
+9. Exploit: Next, it was time to find this password. I loaded up the the brute force scanner `auxiliary/scanner/winrm/winrm_login` via `use 3`. Again, I used `options` to see what was required and set already. For this step, I needed the domain, rhosts, password, pass_file and username (even though password, pass_file and username says 'no'). The exploit wouldn't run without all 5 because of the authentication. For password, I put a random password value in but input the actual username. As for pass_file, this requires a file with passwords on one line so I thought the john.lst wordlist I had in Kali would be just fine.</br>
+`set DOMAIN MYFIRSTDOMAIN`</br>
+`set rhosts <target ip>`</br>
+`set PASSWORD pass` (not the correct password btw)</br>
+`set PASS_FILE usr/share/wordlists/john.lst`</br>
+`set USERNAME Administrator`
+![Bruteforcefailed](https://github.com/chryber/Brute-Forcing-Active-Directory-with-Metasploit/assets/121698544/92a5bf72-8289-4813-9879-92a0dd3bb2a9)
+
+10. Try Again: So brute forcing failed the first time after running through each password in the file. The password I set was in the file but unfortunately, one capital letter made all the difference (I checked). Maybe I need more wordlists or maybe it was something else. I will figure that out later.
+
+11. I decided to create my own wordlist with the password I set to test the module regardless. I opened a new terminal window and navigates to the wordlists directory. Writing to file in this directory is not possible unless you have root permissions so I sudo'd into root and created the file `mousepad brutefile.txt`. I loaded up some generic passwords including the correct one and reset the pass_file option to `set PASS_FILE usr/share/wordlists/brutefile.txt`. SUCCESS!
+![Bruteforcecomplete!](https://github.com/chryber/Brute-Forcing-Active-Directory-with-Metasploit/assets/121698544/3511cb4e-7a39-40c6-8b6a-c26c2d4a3d6c)
+
+
