@@ -1,7 +1,7 @@
 <h1>Brute Forcing Active Directory with Metasploit</h1>
 
 <h2>Intro</h2>
-Funny story how this lab began. I was actually attempting to set up another lab with Active Directory but could not remember the admin login I created initially. I kept trying generic passwords and ones that I used in the past but none could log me in. Frustrated, I tried recovery mode to see if I can get to the command prompt but that required my admin login as well. 🤦‍♂️ This situation got my wheels spinning. Can I crack my AD password? I began to look into this and finally got it with a little help which will be discussed later on. Follow along after setting up AD and Kali or just read through my process on how dangerous it is to use weak passwords. I detailed the process and tools that I used below. Check out my first AD project or Jason Makador's Youtube tutorial on how to create the homelab.
+Funny story how this lab began. I was actually attempting to set up another lab with Active Directory but could not remember the admin login I created initially. I kept trying generic passwords and ones that I used in the past but none could log me in. Frustrated, I tried recovery mode to see if I can get to the command prompt but that required my admin login as well 🤦‍♂️. This situation got my wheels spinning. Can I crack my password? I began to look into this and finally got it with a little help which will be discussed later on. Follow along after setting up AD and Kali or just read through my process on how dangerous it is to use weak passwords. I detailed the process and tools that I used below. Check out my first AD project or Jason Makador's Youtube tutorial on how to create the homelab.
 
 <h2>🔩 Utlities Used</h2>
 
@@ -21,7 +21,10 @@ Funny story how this lab began. I was actually attempting to set up another lab 
 4. Set up: Moving AD and Kali into the same subnet. Click machine < Settings < Network < Attached to: NAT Network < Name: ChryberHomeLab (in my case).
 ![Recording 2023-07-12 at 19 18 10](https://github.com/chryber/Brute-Forcing-Active-Directory-with-Metasploit/assets/121698544/2c60faa1-3403-491a-b02f-88a9bfcf892f)
 
-5. IP address locator: Now that the attack machine (Kali) and the target (Server 2019) are on on the same network, my next thought was how I can 
+5. IP address locator: Now that the attack machine (Kali) and the target (Server 2019) are on on the same network, my next thought was how I can locate the IP address assigned to the server machine by DHCP. I decided to use Nmap. In short, Nmap scans a specific ip or subnet for open ports, services and hosts. I used the help page to use the best flags for this. I chose `nmap -v -sn 192.168.3.0/24`. Why? -v for verbosity so I can see the addresses being scanned and -sn so ports are not scanned for each, all I need to know is what hosts are active on the network. 
+![NmapscanforAD](https://github.com/chryber/Brute-Forcing-Active-Directory-with-Metasploit/assets/121698544/6a1490f9-e220-4b74-8ec1-4d9ddc5d4234)
+After narrowing the active hosts to 2 (which is correct since I have a Win 10 machine also on the network), I switched up the scan to all port scan using 
+
 
 
 
