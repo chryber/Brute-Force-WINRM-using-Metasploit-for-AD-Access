@@ -9,8 +9,6 @@ Funny story how this lab began. I was actually attempting to set up another lab 
 - Virtual Box 🧰
 - Kali Purple 🐉 (attacker)
 
-<h2>Network Map</h2>
-
 <h2>♻️ The Process</h2>
 
 1. Deep thought: How can I crack my password? In Windows, the password hashes are stored in HKEY_LOCAL_MACHINE\SAM. SAM is the Windows Security Accounts Manager. For obvious security purposes, this database cannot be accessed unless you have system priveleges and HLK/SAM access. Without getting to deep into Windows internals, I am on the outside so I can't even get to this file to extract the hashes to run through tools like Hashcat. My next thought: why not try brute forcing it?
